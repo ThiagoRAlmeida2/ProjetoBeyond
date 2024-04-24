@@ -6,8 +6,9 @@
         src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg"
     >
       <!-- Eu gostei bastante desse Background, por isso deixei-->
-
-      <v-app-bar-nav-icon></v-app-bar-nav-icon>
+      <header>
+        <menu-header></menu-header>
+      </header>
 
       <v-toolbar-title :style="{ color: 'gray' }">Forum Bayond</v-toolbar-title>
 
@@ -38,12 +39,14 @@
 
 <script>
 import {right} from "core-js/internals/array-reduce";
+import MenuHeader from "@/components/MenuHeader.vue";
 
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: "Header",
   methods: {right},
   components: {
+    MenuHeader,
     // eslint-disable-next-line vue/no-unused-components
     data: () => ({ value: 'recent' }),
   }
@@ -53,7 +56,7 @@ export default {
 
 <style scoped>
 .bottom-nav {
-  width: 100%;
+  width: 18%;
   background-color: transparent;
 }
 </style>
