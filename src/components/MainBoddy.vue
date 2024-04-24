@@ -160,16 +160,16 @@
 <script>
 export default {
   data: () => ({
-      drawer: true, // Controla se a gaveta está aberta ou fechada
-      model: 1,
-      show: false,
-      dialog: false,
-      watch: {
-    dialog (val) {
-      if (!val) return
-      setTimeout(() => (this.dialog = false), 1)
+    drawer: true, // Controla se a gaveta está aberta ou fechada
+    model: 1,
+    show: false,
+    dialog: false,
+    watch: {
+      dialog (val) {
+        if (!val) return
+        setTimeout(() => (this.dialog = false), 1)
+      },
     },
-  },
   }),
 }
 </script>
