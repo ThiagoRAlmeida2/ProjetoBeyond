@@ -28,8 +28,8 @@
           <v-icon>mdi-heart</v-icon>
         </v-btn>
         <v-btn>
-          <span>Nearby</span>
-          <v-icon>mdi-map-marker</v-icon>
+          <span>Login</span>
+          <v-icon>mdi-login</v-icon>
         </v-btn>
       </v-bottom-navigation>
     </v-toolbar>
@@ -53,7 +53,7 @@ export default {
 
 <style scoped>
 .bottom-nav {
-  width: 18%;
+  width: 100%;
   background-color: transparent;
 }
 </style>
