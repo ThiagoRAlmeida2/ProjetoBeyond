@@ -10,25 +10,40 @@
         <menu-header></menu-header>
       </header>
 
-      <v-toolbar-title :style="{ color: 'gray' }">Forum Bayond</v-toolbar-title>
+        <v-toolbar-title :style="{ color: 'withe' }">
+          <v-icon class="mr-2">mdi-forum</v-icon>
+          Forum Bayond
+        </v-toolbar-title>
+
 
       <v-spacer></v-spacer>
 
       <v-bottom-navigation
           :value="value"
-          color="primary"
+          background-color="transparent"
+          color="black"
           class="bottom-nav"
       >
         <v-spacer></v-spacer>
-        <v-btn>
+
+        <v-btn
+            background-color="transparent"
+            color="transparent"
+        >
           <span>Recents</span>
           <v-icon>mdi-history</v-icon>
         </v-btn>
-        <v-btn>
+        <v-btn
+            background-color="transparent"
+            color="transparent"
+        >
           <span>Favorites</span>
           <v-icon>mdi-heart</v-icon>
         </v-btn>
-        <v-btn>
+        <v-btn
+            background-color="transparent"
+            color="transparent"
+        >
           <span>Login</span>
           <v-icon>mdi-login</v-icon>
         </v-btn>

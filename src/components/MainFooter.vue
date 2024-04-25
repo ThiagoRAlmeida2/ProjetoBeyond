@@ -1,4 +1,4 @@
-<template>
+<template class="teste">
   <v-card height="125px">
     <v-footer
         absolute
@@ -38,7 +38,6 @@ export default {
       'mdi-home',
       'mdi-email',
       'mdi-calendar',
-      'mdi-delete',
     ],
   }),
 }

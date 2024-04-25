@@ -1,5 +1,5 @@
-<template>
-  <v-row justify="center">
+<template class="CriarComunidade">
+  <v-row class="CriarComunidade" justify="end">
     <v-dialog
         v-model="dialog"
         persistent
@@ -12,12 +12,12 @@
             v-bind="attrs"
             v-on="on"
         >
-          Open Dialog
+          Create communit
         </v-btn>
       </template>
-      <v-card>
+      <v-card class="elevated-card">
         <v-card-title>
-          <span class="text-h5">User Profile</span>
+          <span class="text-h5">Create Comunnit</span>
         </v-card-title>
         <v-card-text>
           <v-container>
@@ -28,7 +28,7 @@
                   md="4"
               >
                 <v-text-field
-                    label="Legal first name*"
+                    label="Name for communit"
                     required
                 ></v-text-field>
               </v-col>
@@ -38,25 +38,7 @@
                   md="4"
               >
                 <v-text-field
-                    label="Legal middle name"
-                    hint="example of helper text only on focus"
-                ></v-text-field>
-              </v-col>
-              <v-col
-                  cols="12"
-                  sm="6"
-                  md="4"
-              >
-                <v-text-field
-                    label="Legal last name*"
-                    hint="example of persistent helper text"
-                    persistent-hint
-                    required
-                ></v-text-field>
-              </v-col>
-              <v-col cols="12">
-                <v-text-field
-                    label="Email*"
+                    label="Your Email*"
                     required
                 ></v-text-field>
               </v-col>
@@ -73,7 +55,7 @@
               >
                 <v-select
                     :items="['0-17', '18-29', '30-54', '54+']"
-                    label="Age*"
+                    label="Community Users "
                     required
                 ></v-select>
               </v-col>
@@ -82,8 +64,8 @@
                   sm="6"
               >
                 <v-autocomplete
-                    :items="['Skiing', 'Ice hockey', 'Soccer', 'Basketball', 'Hockey', 'Reading', 'Writing', 'Coding', 'Basejump']"
-                    label="Interests"
+                    :items="['Vue', 'JavaScript', 'Java', 'Node.js', 'Python', 'Codes']"
+                    label="Interested"
                     multiple
                 ></v-autocomplete>
               </v-col>
@@ -121,4 +103,15 @@ export default {
 }
 </script>
 
-<!--  teste -->
+<style scoped>
+.CriarComunidade{
+  margin-right: 5px;
+  margin-top: 10px;
+}
+  &:hover {
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.35);
+  }
+.elevated-card {
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+}
+</style>
