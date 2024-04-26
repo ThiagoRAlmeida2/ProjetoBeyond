@@ -262,7 +262,7 @@ export default {
 
 .postagens{
   text-align: justify;
-  margin-top: 0px;
+  margin-top: 0;
 }
 .custom-width{
   width: 200px;
