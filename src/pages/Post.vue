@@ -14,21 +14,21 @@
               </v-toolbar>
 
               <v-card-text>
-                <!-- Título da postagem -->
+
                 <v-text-field
                     filled
-                    label="Title"
+                    label="Your user"
                     v-model="postTitle"
+                    maxlength="50"
                 ></v-text-field>
 
-                <!-- Texto da postagem -->
                 <v-textarea
                     filled
                     label="Text"
                     v-model="postText"
+                    auto-grow
                 ></v-textarea>
 
-                <!-- Campo para carregar imagem -->
                 <v-file-input
                     label="Upload image"
                     v-model="postImage"
@@ -38,7 +38,6 @@
 
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <!-- Botão para postar -->
                 <v-btn
                     color="success"
                     depressed
@@ -50,7 +49,6 @@
             </v-card>
           </v-col>
 
-          <!-- Exibição das postagens -->
           <v-col xs="1" sm="3" md="3">
             <div v-for="(post, index) in posts" :key="index">
               <v-card
@@ -85,10 +83,12 @@
                 </v-card-text>
 
                 <v-card-actions>
-                  <v-list-item>
+                  <v-list-item class="grow">
                     <v-list-item-avatar color="grey darken-3">
                       <v-img
                           class="elevation-6"
+                          alt=""
+                          src="https://avataaars.io/?avatarStyle=Transparent&topType=ShortHairShortCurly&accessoriesType=Prescription02&hairColor=Black&facialHairType=Blank&clotheType=Hoodie&clotheColor=White&eyeType=Default&eyebrowType=DefaultNatural&mouthType=Default&skinColor=Light"
                       ></v-img>
                     </v-list-item-avatar>
 
