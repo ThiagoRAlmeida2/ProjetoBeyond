@@ -30,6 +30,7 @@ Se deseja contribuir para o projeto, siga estas etapas:
 
 - **Framework Vue.js**: O projeto é construído com Vue.js, uma framework JavaScript progressiva para construção de interfaces de usuário.
 - **Vuetify**: Utilizamos Vuetify para componentes de UI e estilos visuais.
+- **VueRouter**: Utilizei VueRouter para linkar as paginas
 
 ## Contato e Suporte
 
@@ -41,3 +42,4 @@ Aqui tenho algumas fotos para uma pequena visualização do projeto
 
 ![Primeira Imagem](src/assets/imagem3.png)
 ![Segunda_Imagem](src/assets/Imagem2.png)
+![Terceira_Image](src/assets/Imagem7.png)
