@@ -48,9 +48,9 @@ export default {
         route: '/chat',
       },
       {
-        icon: 'mdi-star',
-        text: 'Favoritos',
-        route: '/favoritos',
+        icon: 'mdi-post',
+        text: 'Postagens',
+        route: '/post',
       },
       {
         icon: 'mdi-send',
