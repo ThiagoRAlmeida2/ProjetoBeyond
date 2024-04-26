@@ -13,16 +13,24 @@
       </template>
       <v-list>
         <v-list-item-group v-model="model">
+
           <v-list-item
               v-for="(item, i) in items"
               :key="i"
+              @click="navigate(item.route)"
           >
-            <v-list-item-icon>
-              <v-icon>{{ item.icon }}</v-icon>
-            </v-list-item-icon>
-            <v-list-item-content>
-              <v-list-item-title>{{ item.text }}</v-list-item-title>
-            </v-list-item-content>
+          <v-list-item-icon>
+            <v-icon>
+              {{ item.icon }}
+            </v-icon>
+          </v-list-item-icon>
+
+          <v-list-item-content>
+            <v-list-item-title>
+              {{ item.text }}
+            </v-list-item-title>
+          </v-list-item-content>
+
           </v-list-item>
         </v-list-item-group>
       </v-list>
@@ -37,19 +45,29 @@ export default {
       {
         icon: 'mdi-chat',
         text: 'Chat',
+        route: '/chat',
       },
       {
         icon: 'mdi-star',
         text: 'Favoritos',
+        route: '/favoritos',
       },
       {
         icon: 'mdi-send',
         text: 'Enviados',
+        route: '/enviados',
       },
     ],
   }),
+
+  methods: {
+    navigate(route) {
+      this.$router.push(route);
+    },
+  },
 }
 </script>
+
 
 <style scoped>
 </style>

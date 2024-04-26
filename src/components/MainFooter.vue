@@ -17,10 +17,11 @@
             :key="icon"
             class="mx-4"
             icon
+            @click="navigate(icon)"
         >
-          <v-icon size="24px">
-            {{ icon }}
-          </v-icon>
+        <v-icon size="24px">
+          {{ icon }}
+        </v-icon>
         </v-btn>
       </v-card-text>
       <v-card-text class="white--text">
@@ -33,14 +34,23 @@
 
 <script>
 export default {
-  data: () => ({
-    icons: [
-      'mdi-home',
-      'mdi-email',
-      'mdi-calendar',
-    ],
-  }),
-}
+  data() {
+    return {
+      icons: [
+        'mdi-home',
+        'mdi-email',
+        'mdi-calendar',
+      ],
+    };
+  },
+  methods: {
+    navigate(icon) {
+      if (icon === 'mdi-home') {
+        this.$router.push('/');
+      }
+    },
+  },
+};
 </script>
 
 <style scoped>

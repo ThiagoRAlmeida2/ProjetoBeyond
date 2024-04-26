@@ -21,50 +21,55 @@
       <v-bottom-navigation
           :value="value"
           background-color="transparent"
-          color="black"
+          color="cyan"
           class="bottom-nav"
       >
-        <v-spacer></v-spacer>
-
-        <v-btn
+        <v-spacer align="center">
+          <v-btn
             background-color="transparent"
             color="transparent"
         >
           <span>Recents</span>
           <v-icon>mdi-history</v-icon>
         </v-btn>
-        <v-btn
-            background-color="transparent"
-            color="transparent"
-        >
-          <span>Favorites</span>
-          <v-icon>mdi-heart</v-icon>
-        </v-btn>
-        <v-btn
-            background-color="transparent"
-            color="transparent"
-        >
-          <span>Login</span>
-          <v-icon>mdi-login</v-icon>
-        </v-btn>
+          <v-btn
+              background-color="transparent"
+              color="transparent"
+              @click="goTo('/')"
+          >
+            <span>Home</span>
+            <v-icon>mdi-home</v-icon>
+          </v-btn>
+          <v-btn
+              background-color="transparent"
+              color="transparent"
+          >
+            <span>Login</span>
+            <v-icon>mdi-login</v-icon>
+          </v-btn></v-spacer>
+
       </v-bottom-navigation>
     </v-toolbar>
   </div>
 </template>
 
 <script>
-import {right} from "core-js/internals/array-reduce";
 import MenuHeader from "@/components/MenuHeader.vue";
 
 export default {
+  methods: {
+    goTo(path) {
+      this.$router.push(path);
+    },
+  },
   // eslint-disable-next-line vue/multi-word-component-names
   name: "Header",
-  methods: {right},
   components: {
     MenuHeader,
     // eslint-disable-next-line vue/no-unused-components
     data: () => ({ value: 'recent' }),
   }
+
 };
 
 </script>

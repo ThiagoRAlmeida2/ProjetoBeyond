@@ -30,16 +30,10 @@ Se deseja contribuir para o projeto, siga estas etapas:
 
 - **Framework Vue.js**: O projeto é construído com Vue.js, uma framework JavaScript progressiva para construção de interfaces de usuário.
 - **Vuetify**: Utilizamos Vuetify para componentes de UI e estilos visuais.
-- **Backend**: Se houver um backend, mencione o framework ou tecnologia usada.
-- **Banco de Dados**: Se o projeto utiliza um banco de dados, forneça detalhes sobre qual é usado.
 
 ## Contato e Suporte
 
-Para suporte ou perguntas sobre o projeto, entre em contato pelo e-mail [seu_email@example.com] ou abra uma issue no repositório do GitHub. A comunidade está sempre disposta a ajudar.
-
-## Licença
-
-Inclua detalhes sobre a licença do projeto, se necessário. Se o projeto for de código aberto, informe a licença aplicada, como MIT ou GPL.
+Para suporte ou perguntas sobre o projeto, entre em contato pelo e-mail thiagoralmeida23@gmail.com ou abra uma issue no repositório do GitHub. A comunidade está sempre disposta a ajudar.
 
 ## Fotos do projeto
 
