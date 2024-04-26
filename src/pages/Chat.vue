@@ -114,6 +114,7 @@
 
             <v-text-field
                 v-model="newMessage"
+                :color="imagePreview ? 'green' : 'default'"
                 filled
                 label="Digite sua mensagem..."
                 @keyup.enter="trySendMessage"
@@ -228,7 +229,7 @@ export default {
     },
 
     sendMessage() {
-      if (this.newMessage.trim() === "") {
+      if (this.newMessage.trim() === "" && !this.imagePreview) {
         return;
       }
 
@@ -240,7 +241,6 @@ export default {
 
       this.chats[this.selectedForum].push(newMsg);
       this.messages.push(newMsg);
-
       this.newMessage = "";
       this.imagePreview = null;
     },
@@ -253,9 +253,9 @@ export default {
       const file = event.target.files[0];
       if (file) {
         this.imagePreview = URL.createObjectURL(file);
+        this.newMessage = "";
       }
     },
-
     toggleRecording() {
       if (this.isRecording) {
         this.stopRecording();
@@ -267,22 +267,22 @@ export default {
     startRecording() {
       if (!this.isRecording) {
         navigator.mediaDevices
-            .getUserMedia({ audio: true })
-            .then((stream) => {
-              this.mediaRecorder = new MediaRecorder(stream);
-              this.recordedBlobs = [];
-              this.mediaRecorder.ondataavailable = (event) => {
-                if (event.data && event.data.size > 0) {
-                  this.recordedBlobs.push(event.data);
-                }
-              };
-              this.mediaRecorder.start();
-              this.isRecording = true;
-            })
-            .catch((err) => {
-              console.error("Erro ao acessar o microfone:", err);
-            });
-      }
+        .getUserMedia({ audio: true })
+        .then((stream) => {
+          this.mediaRecorder = new MediaRecorder(stream);
+          this.recordedBlobs = [];
+          this.mediaRecorder.ondataavailable = (event) => {
+            if (event.data && event.data.size > 0) {
+              this.recordedBlobs.push(event.data);
+            }
+          };
+          this.mediaRecorder.start();
+          this.isRecording = true;
+        })
+        .catch((err) => {
+          console.error("Erro ao acessar o microfone:", err);
+        });
+        }
     },
 
     stopRecording() {
@@ -292,12 +292,13 @@ export default {
 
         const audioBlob = new Blob(this.recordedBlobs, { type: "audio/webm" });
         const audioUrl = URL.createObjectURL(audioBlob);
-
-        this.chats[this.selectedForum].push({
+        const newAudioMessage = {
           author: "Você",
           text: "",
           audio: audioUrl,
-        });
+        };
+        this.chats[this.selectedForum].push(newAudioMessage);
+        this.messages.push(newAudioMessage);
       }
     },
   },
