@@ -5,27 +5,48 @@
     <v-main>
       <v-container fluid>
         <v-row>
+          <v-navigation-drawer
+              permanent
+              class="custom-width"
+          >
+            <v-list class="Letras">
+              <v-app-bar
+                  color="blue"
+                  elevation="3"
+                  class="align-start no-margin"
+              >
+                <div class="centro">
+                  <h2 class="textoBranco">Comunnit</h2>
+                </div>
+              </v-app-bar>
 
-            <v-navigation-drawer
-                permanent
-                class="custom-width"
-            >
-              <v-list class="Letras">
-                <v-list-item-group v-model="selectedUser">
-                  <v-list-item
-                      v-for="(user, index) in users"
-                      :key="index"
-                      @click="selectChat(index)"
-                  >
-                    <v-list-item-content>
-                      <v-list-item-title>{{ user.name }}</v-list-item-title>
-                    </v-list-item-content>
-                  </v-list-item>
+              <v-list>
+                <v-list-item-group v-model="selectedForum" color="blue">
+                  <template v-for="(item, index) in items">
+                    <v-list-item
+                        :key="index"
+                        @click="selectForum(index)"
+                        :active="selectedForum === index"
+                    >
+                      <v-list-item-avatar>
+                        <img :src="item.avatar" alt="Avatar do fórum" />
+                      </v-list-item-avatar>
+                      <v-list-item-content>
+                        <v-list-item-title>{{ item.title }}</v-list-item-title>
+                      </v-list-item-content>
+                    </v-list-item>
+
+                    <v-divider
+                        v-if="index < items.length - 1"
+                        :key="'divider-' + index"
+                    ></v-divider>
+                  </template>
                 </v-list-item-group>
               </v-list>
-            </v-navigation-drawer>
+            </v-list>
+          </v-navigation-drawer>
 
-          <v-col xs="3" >
+          <v-col xs="12" sm="6" >  <!-- Define o tamanho do cartão -->
             <div class="postagens">
               <v-app-bar
                   color="blue"
@@ -36,16 +57,35 @@
                   <h2 class="textoBranco">Recent Post</h2>
                 </div>
               </v-app-bar>
-              <div class="postagem" v-for="(post, index) in recentPosts" :key="index">
-                <h3>{{ post.title }}</h3>
-                <p>{{ post.content }}</p>
-              </div>
+
+              <v-row dense>
+                <v-col v-for="(post, index) in recentPosts" :key="index">
+                  <v-card style="max-height: 400px; max-width: 1000px;">
+
+                    <v-card-media>
+                      <img :src="post.image" alt="Imagem do post" style="object-fit: cover; width: 100%; height: 100%;" />
+                    </v-card-media>
+
+                    <v-card-title>
+                      {{ post.title }}
+                    </v-card-title>
+
+                    <!-- Subtítulo do cartão -->
+                    <v-card-subtitle>
+                      {{ post.subtitle }}
+                    </v-card-subtitle>
+                    <v-card-actions>
+                      <v-avatar>
+                        <img :src="post.userAvatar" alt="Avatar do usuário" />
+                      </v-avatar>
+                      <span>{{ post.userName }}</span>
+                    </v-card-actions>
+                  </v-card>
+                </v-col>
+              </v-row>
             </div>
           </v-col>
-
-          <v-divider
-              vertical
-          ></v-divider>
+          <v-divider vertical></v-divider>
 
           <v-col xs="9">
             <div class="chat-messages">
@@ -61,7 +101,7 @@
                 </span>
 
                 <div v-if="message.image" class="message-image">
-                  <img :src="message.image" alt="Pré-visualização" />
+                  <img :src="message.image" alt="Pré-visualização da imagem" />
                 </div>
 
                 <div v-if="message.audio" class="message-audio">
@@ -76,9 +116,13 @@
                 v-model="newMessage"
                 filled
                 label="Digite sua mensagem..."
-                @keyup.enter="sendMessage"
+                @keyup.enter="trySendMessage"
             >
               <template v-slot:append>
+                <v-btn icon @click="sendMessage">
+                  <v-icon>mdi-send</v-icon>
+                </v-btn>
+
                 <v-btn icon @click="triggerFileInput">
                   <v-icon>mdi-file-image</v-icon>
                 </v-btn>
@@ -86,10 +130,6 @@
                 <v-btn icon @click="toggleRecording">
                   <v-icon v-if="!isRecording">mdi-microphone</v-icon>
                   <v-icon v-else>mdi-stop-circle</v-icon>
-                </v-btn>
-
-                <v-btn icon @click="sendMessage">
-                  <v-icon>mdi-send</v-icon>
                 </v-btn>
               </template>
             </v-text-field>
@@ -112,6 +152,10 @@
 <script>
 import Header from "../components/Header.vue";
 import MainFooter from "../components/MainFooter.vue";
+import Imagem6 from "../assets/Imagem6.jpg";
+import Imagem5 from '../assets/Imagem5.jpg';
+import Imagem4 from '../assets/Imagem4.jpg';
+
 
 export default {
   components: {
@@ -121,23 +165,45 @@ export default {
   data() {
     return {
       recentPosts: [
-        { title: "Postagem 1", content: "Conteúdo da Postagem 1" },
-        { title: "Postagem 2", content: "Conteúdo da Postagem 2" },
-        { title: "Postagem 3", content: "Conteúdo da Postagem 3" },
+        {
+          title: "Star Wars",
+          subtitle: "É tudo de bom",
+          content: "Star Wars é o melhor filme que alguém pode ver",
+          image: Imagem5,
+          userAvatar: Imagem4,
+          userName: "Thiago",
+        },
+        {
+          title: "Acer Nitro",
+          subtitle: "Acer!!!!",
+          content: "Para mim esse Acer Nitro é um dos melhores PCs",
+          image: Imagem6,
+          userAvatar: Imagem6,
+          userName: "Acerzinho",
+        },
+        {
+          title: "Física",
+          subtitle: "Física Quântica",
+          content: "Eu quero muito me formar em física, mas Geometria Analítica está sendo bem difícil",
+          image: Imagem4,
+          userAvatar: Imagem4,
+          userName: "Thiago",
+        },
       ],
-      selectedUser: 0,
-      users: [
-        { name: "Forum1" },
-        { name: "Forum2" },
-        { name: "Forum3" },
+      selectedForum: 0,
+      items: [
+        { avatar: require("../assets/Imagem4.jpg"), title: "Física Quântica" },
+        { avatar: require("../assets/Imagem5.jpg"), title: "Beyond" },
+        { avatar: require("../assets/Imagem6.jpg"), title: "Ficr" },
       ],
-      newMessage: "",
-      chats:{
+      chats: {
         0: [],
         1: [],
         2: [],
       },
       messages: [],
+      newMessage: "",
+      isSending: false,
       isRecording: false,
       mediaRecorder: null,
       recordedBlobs: [],
@@ -145,21 +211,38 @@ export default {
     };
   },
   methods: {
-    selectChat(index) {
-      this.selectedUser = index;
+    selectForum(index) {
+      this.selectedForum = index;
       this.messages = this.chats[index];
+    },
+    trySendMessage() {
+      if (this.isSending) {
+        return;
+      }
+      this.isSending = true;
+
+      this.sendMessage();
+      setTimeout(() => {
+        this.isSending = false;
+      }, 1000);
     },
 
     sendMessage() {
-      if (this.newMessage.trim() !== "" || this.imagePreview) {
-        this.messages.push({
-          author: "Você",
-          text: this.newMessage.trim(),
-          image: this.imagePreview,
-        });
-        this.newMessage = "";
-        this.imagePreview = null;
+      if (this.newMessage.trim() === "") {
+        return;
       }
+
+      const newMsg = {
+        author: "Você",
+        text: this.newMessage.trim(),
+        image: this.imagePreview,
+      };
+
+      this.chats[this.selectedForum].push(newMsg);
+      this.messages.push(newMsg);
+
+      this.newMessage = "";
+      this.imagePreview = null;
     },
 
     triggerFileInput() {
@@ -207,12 +290,10 @@ export default {
         this.mediaRecorder.stop();
         this.isRecording = false;
 
-        // Criar um Blob para o áudio gravado e gerar um URL para ele
         const audioBlob = new Blob(this.recordedBlobs, { type: "audio/webm" });
         const audioUrl = URL.createObjectURL(audioBlob);
 
-        // Adicionar o áudio à lista de mensagens
-        this.messages.push({
+        this.chats[this.selectedForum].push({
           author: "Você",
           text: "",
           audio: audioUrl,
@@ -222,6 +303,8 @@ export default {
   },
 };
 </script>
+
+
 
 <style scoped>
 .chat-messages {
@@ -260,24 +343,30 @@ export default {
   width: 100%;
 }
 
-.postagens{
+.postagens {
   text-align: justify;
   margin-top: 0;
 }
-.custom-width{
-  width: 200px;
-  margin-top: 0;
 
+.custom-width {
+  width: 200px;
 }
-.Letras{
+
+.Letras {
   margin-top: 5px;
 }
 
-.textoBranco{
+.textoBranco {
   color: white;
 }
 
-.centro{
+.centro {
   text-align: center;
+}
+
+.larger-card {
+  height: 200px;
+  width: 800px;
+  padding: 20px;
 }
 </style>

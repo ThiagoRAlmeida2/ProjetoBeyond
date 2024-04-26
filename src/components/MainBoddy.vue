@@ -263,6 +263,4 @@ export default {
 </script>
 
 <style scoped>
-.small-margin {
-}
 </style>
