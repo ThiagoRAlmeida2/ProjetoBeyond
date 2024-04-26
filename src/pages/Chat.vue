@@ -364,9 +364,4 @@ export default {
   text-align: center;
 }
 
-.larger-card {
-  height: 200px;
-  width: 800px;
-  padding: 20px;
-}
 </style>
