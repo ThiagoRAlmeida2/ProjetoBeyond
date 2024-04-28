@@ -145,8 +145,9 @@
         </v-row>
       </v-container>
     </v-main>
-
+  <footer>
     <MainFooter></MainFooter>
+  </footer>
   </v-app>
 </template>
 

@@ -110,7 +110,9 @@
         </v-row>
       </v-container>
     </v-main>
-    <MainFooter></MainFooter>
+    <footer>
+      <MainFooter></MainFooter>
+    </footer>
   </v-app>
 </template>
 

@@ -1,9 +1,9 @@
-<template class="teste">
+<template>
   <v-card height="125px">
     <v-footer
         absolute
         padless
-        class="fixed-footer text-center"
+        align="center"
     >
     <v-card
         flat
@@ -54,10 +54,4 @@ export default {
 </script>
 
 <style scoped>
-.fixed-footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-}
 </style>
