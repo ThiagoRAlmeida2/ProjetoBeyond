@@ -145,9 +145,9 @@
         </v-row>
       </v-container>
     </v-main>
-  <footer>
-    <MainFooter></MainFooter>
-  </footer>
+    <footer>
+      <MainFooter></MainFooter>
+    </footer>
   </v-app>
 </template>
 
@@ -268,22 +268,22 @@ export default {
     startRecording() {
       if (!this.isRecording) {
         navigator.mediaDevices
-        .getUserMedia({ audio: true })
-        .then((stream) => {
-          this.mediaRecorder = new MediaRecorder(stream);
-          this.recordedBlobs = [];
-          this.mediaRecorder.ondataavailable = (event) => {
-            if (event.data && event.data.size > 0) {
-              this.recordedBlobs.push(event.data);
-            }
-          };
-          this.mediaRecorder.start();
-          this.isRecording = true;
-        })
-        .catch((err) => {
-          console.error("Erro ao acessar o microfone:", err);
-        });
-        }
+            .getUserMedia({ audio: true })
+            .then((stream) => {
+              this.mediaRecorder = new MediaRecorder(stream);
+              this.recordedBlobs = [];
+              this.mediaRecorder.ondataavailable = (event) => {
+                if (event.data && event.data.size > 0) {
+                  this.recordedBlobs.push(event.data);
+                }
+              };
+              this.mediaRecorder.start();
+              this.isRecording = true;
+            })
+            .catch((err) => {
+              console.error("Erro ao acessar o microfone:", err);
+            });
+      }
     },
 
     stopRecording() {
