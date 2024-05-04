@@ -1,7 +1,7 @@
 <template>
-  <v-container>
+  <v-container class="Busca">
     <v-row justify="center">
-      <v-col cols="12" md="6" lg="6">
+      <v-col cols="12" md="6" >
         <!-- Caixa de busca -->
         <v-text-field
             v-model="query"
@@ -12,7 +12,7 @@
         clearable
         >
         <template v-slot:append>
-          <v-icon @click="search">mdi-magnify</v-icon> <!-- Ícone de lupa -->
+          <v-icon @click="search">mdi-magnify</v-icon>
         </template>
         </v-text-field>
       </v-col>
@@ -56,11 +56,8 @@ export default {
 </script>
 
 <style scoped>
-.v-text-field {
-  transition: all 0.3s ease-in-out;
-}
-
-.v-text-field:focus-within {
-  border-color: #4285f4;
+.Busca{
+  margin-top: 1px;
+  display: flex;
 }
 </style>
