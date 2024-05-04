@@ -93,7 +93,7 @@
     </v-dialog>
 
     <v-row>
-      <v-col v-for="community in communities" :key="community.name" cols="12" sm="6" md="4">
+      <v-col v-for="(community, index) in communities" :key="index" cols="12" sm="6" md="4">
         <v-card class="mx-auto" max-width="344">
           <v-img :src="community.imageURL" height="200px"></v-img>
           <v-card-title>{{ community.name }}</v-card-title>
@@ -165,24 +165,29 @@ export default {
     onImageChange(event) {
       const file = event.target.files[0];
       if (file) {
-        this.newCommunity.imageURL = URL.createObjectURL(file); // URL temporário para imagem
+        const imageURL = URL.createObjectURL(file);
+        console.log('Image URL:', imageURL);
+        this.newCommunity.imageURL = imageURL;
       }
     },
     saveCommunity() {
-      const newEntry = { ...this.newCommunity };
+      const newEntry = {
+        name: this.newCommunity.name,
+        description: this.newCommunity.description,
+        imageURL: this.newCommunity.imageURL,
+      };
       this.communities.push(newEntry);
+      this.dialog = false;
 
-      this.dialog = false; // Fecha o diálogo
       this.newCommunity = {
         name: '',
         email: '',
-        password: '',
         description: '',
         ageGroup: '',
         interests: [],
         image: '',
         imageURL: null,
-      }; // Redefine para nova entrada
+      };
     },
   },
 };
