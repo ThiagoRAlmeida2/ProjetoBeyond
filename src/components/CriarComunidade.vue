@@ -29,13 +29,6 @@
                     required
                 ></v-text-field>
               </v-col>
-              <v-col cols="12" sm="6" md="4">
-                <v-text-field
-                    v-model="newCommunity.email"
-                    label="Your Email*"
-                    required
-                ></v-text-field>
-              </v-col>
               <v-col cols="12" sm="6">
                 <v-file-input
                     label="Community Image"
@@ -104,9 +97,9 @@
                   color="purple darken-2"
                   class="white--text"
                   :disabled="isLoading"
-              @click="subscribe"
+                  @click="subscribe"
               >
-              Subscribe
+                Subscribe
               </v-btn>
               <v-dialog
                   v-model="isLoading"
@@ -195,8 +188,9 @@ export default {
 
 <style scoped>
 .CriarComunidade {
-  margin-right: 5px;
-  margin-top: 10px;
+  margin-left: 5px;
+  margin-top: 2px;
+
 }
 
 .elevated-card {

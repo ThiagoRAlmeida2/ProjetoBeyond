@@ -1,10 +1,8 @@
 <template>
-  <v-app>
-    <v-main>
-      <criar-comunidade></criar-comunidade>
+    <div class="container">
       <busca></busca>
-    </v-main>
-  </v-app>
+      <criar-comunidade></criar-comunidade>
+    </div>
 </template>
 
 <script>
@@ -24,4 +22,12 @@ export default {
 </script>
 
 <style scoped>
+.container {
+  position: fixed;
+  top: 125px;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
 </style>

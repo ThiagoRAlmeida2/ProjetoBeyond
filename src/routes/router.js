@@ -4,6 +4,7 @@ import VueRouter from 'vue-router';
 import Home from "../pages/Home.vue";
 import Chat from "../pages/Chat.vue";
 import Post from "../pages/Post.vue";
+import Login from "../pages/Login.vue";
 
 Vue.use(VueRouter);
 const routes= [
@@ -19,6 +20,10 @@ const routes= [
     path: '/post',
     component: Post
     },
+    {
+        path: '/login',
+        component: Login
+    },
 ]
 
 const router = new VueRouter({
@@ -26,3 +31,5 @@ const router = new VueRouter({
 })
 
 export default router;
+
+

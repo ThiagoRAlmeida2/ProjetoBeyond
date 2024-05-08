@@ -5,7 +5,6 @@
         prominent
         src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg"
     >
-      <!-- Eu gostei bastante desse Background, por isso deixei-->
       <header>
         <menu-header></menu-header>
       </header>
@@ -43,6 +42,7 @@
           <v-btn
               background-color="transparent"
               color="transparent"
+              @click="goTo('/login')"
           >
             <span>Login</span>
             <v-icon>mdi-login</v-icon>
@@ -62,12 +62,20 @@ export default {
       this.$router.push(path);
     },
   },
-  // eslint-disable-next-line vue/multi-word-component-names
   name: "Header",
   components: {
     MenuHeader,
+
     // eslint-disable-next-line vue/no-unused-components
-    data: () => ({ value: 'recent' }),
+    data: () => ({
+      items: [
+        {
+          icon: 'mdi-login',
+          text: 'Login',
+          route: '/login',
+        },
+      ]
+    }),
   }
 
 };
