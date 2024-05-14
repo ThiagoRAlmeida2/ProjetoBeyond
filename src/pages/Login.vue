@@ -28,7 +28,7 @@
       </form>
       <div class="additional-options">
         <a href="#">Esqueceu a senha?</a>
-        <a href="#">Criar conta</a>
+        <router-link to="/createLogin">Criar conta</router-link>
       </div>
     </div>
   </div>
