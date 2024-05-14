@@ -1,183 +1,125 @@
 <template>
-  <div class="container">
-    <div class="rectangle1"></div>
-    <div class="rectangle2"></div>
-    <img class="Imagem1" src="@/assets/beyond_coo_logo.jpeg" alt="Ícone de Entrar" class="login-icon">
-    <div class="ImagemForm"></div>
-    <div class="Grupo2">
-      <!-- Conteúdo do formulário aqui -->
-    </div>
-    <div class="CreateAccont">Create Account</div>
-    <div class="EmailAddres">Email Address</div>
-    <div class="RetanguloEmail"></div>
-    <div class="NomeCompleto">Full Name</div>
-    <div class="RetanguloNome"></div>
-    <div class="Password">Password</div>
-    <div class="RetanguloPassword"></div>
-    <!-- Ícone para ver senha -->
-  </div>
+  <form>
+    <v-text-field
+        v-model="name"
+        :error-messages="nameErrors"
+        :counter="10"
+        label="Name"
+        required
+        @input="$v.name.$touch()"
+        @blur="$v.name.$touch()"
+    ></v-text-field>
+    <v-text-field
+        v-model="email"
+        :error-messages="emailErrors"
+        label="E-mail"
+        required
+        @input="$v.email.$touch()"
+        @blur="$v.email.$touch()"
+    ></v-text-field>
+    <v-text-field
+        v-model="Password"
+        :error-messages="passwordError"
+        label="Password"
+        required
+        @input="$v.password.$touch()"
+        @blur="$v.password.$touch()"
+    ></v-text-field>
+    <v-checkbox
+        v-model="checkbox"
+        :error-messages="checkboxErrors"
+        label="You accept the terms of conditions"
+        required
+        @change="$v.checkbox.$touch()"
+        @blur="$v.checkbox.$touch()"
+    ></v-checkbox>
+
+    <v-btn
+        class="mr-4"
+        @click="submit"
+    >
+      submit
+    </v-btn>
+    <v-btn @click="clear">
+      clear
+    </v-btn>
+  </form>
 </template>
 
-<script setup>
+<script>
+import { validationMixin } from 'vuelidate'
+import { required, maxLength, email } from 'vuelidate/lib/validators'
+
+export default {
+  mixins: [validationMixin],
+
+  validations: {
+    name: { required, maxLength: maxLength(10) },
+    email: { required, email },
+    select: { required },
+    checkbox: {
+      checked (val) {
+        return val
+      },
+    },
+  },
+
+  data: () => ({
+    name: '',
+    email: '',
+    select: null,
+    items: [
+      'Item 1',
+      'Item 2',
+      'Item 3',
+      'Item 4',
+    ],
+    checkbox: false,
+  }),
+
+  computed: {
+    checkboxErrors () {
+      const errors = []
+      if (!this.$v.checkbox.$dirty) return errors
+      !this.$v.checkbox.checked && errors.push('You must agree to continue!')
+      return errors
+    },
+    selectErrors () {
+      const errors = []
+      if (!this.$v.select.$dirty) return errors
+      !this.$v.select.required && errors.push('Item is required')
+      return errors
+    },
+    nameErrors () {
+      const errors = []
+      if (!this.$v.name.$dirty) return errors
+      !this.$v.name.maxLength && errors.push('Name must be at most 10 characters long')
+      !this.$v.name.required && errors.push('Name is required.')
+      return errors
+    },
+    emailErrors () {
+      const errors = []
+      if (!this.$v.email.$dirty) return errors
+      !this.$v.email.email && errors.push('Must be valid e-mail')
+      !this.$v.email.required && errors.push('E-mail is required')
+      return errors
+    },
+  },
+
+  methods: {
+    submit () {
+      this.$v.$touch()
+    },
+    clear () {
+      this.$v.$reset()
+      this.name = ''
+      this.email = ''
+      this.select = null
+      this.checkbox = false
+    },
+  },
+}
 </script>
 
-
 <style scoped>
-
-.container {
-  position: relative;
-  width: 1280px;
-  height: 832px;
-
-  background: #FFFFFF;
-}
-
-.rectangle1 {
-  position: absolute;
-  width: 640px;
-  height: 832px;
-  background: #03111B;
-}
-
-.rectangle2 {
-  position: absolute;
-  width: 640px;
-  height: 832px;
-  left: 640px;
-
-  background: #FFFFFF;
-}
-
-.Imagem1 {
-  position: absolute;
-  width: 131px;
-  height: 148px;
-  left: 254px;
-  top: 342px;
-}
-
-.ImagemForm {
-  position: absolute;
-  width: 77px;
-  height: 99px;
-  left: 281px;
-  top: 342px;
-}
-
-.Grupo2 {
-  position: absolute;
-  width: 280px;
-  height: 465px;
-  left: 820px;
-  top: calc(50% - 465px / 2 - 1px);
-}
-
-
-.CreateAccont {
-  position: absolute;
-  width: 165px;
-  height: 27px;
-  left: 820px;
-  top: 183px;
-
-  font-style: normal;
-  font-weight: 500;
-  font-size: 22px;
-  line-height: 27px;
-
-  color: #1E1E1E;
-}
-
-
-.EmailAddres {
-  position: absolute;
-  width: 109px;
-  height: 19px;
-  left: 820px;
-  top: 323px;
-
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 19px;
-
-  color: #1E1E1E;
-}
-
-
-
-.NomeCompleto {
-  position: absolute;
-  width: 76px;
-  height: 19px;
-  left: 820px;
-  top: 235px;
-
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 19px;
-
-  color: #1E1E1E;
-}
-
-.Password {
-  position: absolute;
-  width: 75px;
-  height: 19px;
-  left: 820px;
-  top: 411px;
-
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 19px;
-
-  color: #1E1E1E;
-}
-
-.RetanguloEmail {
-  box-sizing: border-box;
-
-  position: absolute;
-  width: 280px;
-  height: 40px;
-  left: 820px;
-  top: 346px;
-
-  background: #FFFFFF;
-  border: 1px solid #03111B;
-  border-radius: 5px;
-}
-
-.RetanguloNome {
-  box-sizing: border-box;
-
-  position: absolute;
-  width: 280px;
-  height: 40px;
-  left: 820px;
-  top: 258px;
-
-  background: #FFFFFF;
-  border: 1px solid #03111B;
-  border-radius: 5px;
-}
-
-
-.RetanguloPassword {
-  box-sizing: border-box;
-
-  position: absolute;
-  width: 280px;
-  height: 40px;
-  left: 820px;
-  top: 435px;
-
-  background: #FFFFFF;
-  border: 1px solid #03111B;
-  border-radius: 5px;
-}
-
-/* Incone para ver senha */
 </style>
