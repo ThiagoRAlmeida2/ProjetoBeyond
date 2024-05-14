@@ -21,7 +21,7 @@ const routes= [
     component: Post
     },
     {
-    path: '/Home',
+    path: '/home',
     component: Home
     },
 ]
