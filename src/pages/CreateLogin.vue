@@ -2,7 +2,7 @@
   <div class="container">
     <div class="rectangle1"></div>
     <div class="rectangle2"></div>
-    <img class="Imagem1" src="@/assets/beyond_coo_logo.jpeg" alt="Imagem1">
+    <img class="Imagem1" src="@/assets/beyond_coo_logo.jpeg" alt="Ícone de Entrar" class="login-icon">
     <div class="ImagemForm"></div>
     <div class="Grupo2">
       <!-- Conteúdo do formulário aqui -->
@@ -44,7 +44,6 @@
   width: 640px;
   height: 832px;
   left: 640px;
-  top: 0px;
 
   background: #FFFFFF;
 }
@@ -70,7 +69,7 @@
   width: 280px;
   height: 465px;
   left: 820px;
-  top: calc(50% - 465px / 2 - 0.5px);
+  top: calc(50% - 465px / 2 - 1px);
 }
 
 
