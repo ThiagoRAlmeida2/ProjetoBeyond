@@ -1,16 +1,16 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
-import Home from "../pages/Home.vue";
+import Login from "../pages/Login.vue";
 import Chat from "../pages/Chat.vue";
 import Post from "../pages/Post.vue";
-import Login from "../pages/Login.vue";
+import Home from "../pages/Home.vue";
 
 Vue.use(VueRouter);
 const routes= [
     {
     path:'/',
-    component: Home
+    component: Login
     },
     {
     path:'/chat',
@@ -21,8 +21,8 @@ const routes= [
     component: Post
     },
     {
-        path: '/login',
-        component: Login
+    path: '/Home',
+    component: Home
     },
 ]
 
