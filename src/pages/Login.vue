@@ -1,3 +1,4 @@
+<!-- LoginPage.vue -->
 <template>
   <div class="login-container">
     <div class="login-box">
@@ -27,7 +28,7 @@
       </form>
       <div class="additional-options">
         <a href="#">Esqueceu a senha?</a>
-        <router-link to="/register">Criar conta</router-link>
+        <a href="#">Criar conta</a>
       </div>
     </div>
   </div>
@@ -35,21 +36,14 @@
 
 <script setup>
 import { ref } from 'vue';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
-import {useRouter} from "vue-router/composables";
 
 const email = ref('');
 const password = ref('');
-const auth = getAuth();
-const router = useRouter();
 
-const login = async () => {
-  try {
-    await signInWithEmailAndPassword(auth, email.value, password.value);
-    router.push('/Home');
-  } catch (error) {
-    console.error('Erro ao fazer login:', error.message);
-  }
+const login = () => {
+
+  console.log('Tentativa de login:', { email: email.value, password: password.value });
+
 };
 </script>
 
