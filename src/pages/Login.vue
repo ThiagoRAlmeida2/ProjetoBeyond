@@ -53,7 +53,7 @@ const login = () => {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #383D70;
+  background-color:#212179;
 }
 
 .login-box {
