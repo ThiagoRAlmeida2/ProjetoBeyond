@@ -61,7 +61,7 @@ const login = async () => {
   try {
     const userCredential = await firebase.auth().signInWithEmailAndPassword(email.value, password.value);
     console.log('Login bem-sucedido:', userCredential.user);
-    router.push('/home');
+    await router.push('/home');
   } catch (error) {
     console.error('Erro ao fazer login:', error);
     errorMessage.value = 'Credenciais inválidas. Por favor, tente novamente.';
