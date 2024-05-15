@@ -23,10 +23,10 @@ const store = new Vuex.Store({
     actions: {
         // eslint-disable-next-line no-unused-vars
         async create({ commit }, payload) {
-            const {nome, sobrenome, email, password } = payload;
+            const {email, password } = payload;
             try {
                 // eslint-disable-next-line no-undef
-                const result = await createUserWithEmailAndPassword(auth, nome, sobrenome, email, password);
+                const result = await createUserWithEmailAndPassword(auth, email, password);
                 console.log("Usuário criado!", result);
             } catch (error) {
                 alert(error);
@@ -46,7 +46,6 @@ const store = new Vuex.Store({
         },
     },
 });
-
 Vue.config.productionTip = false
 
 new Vue({

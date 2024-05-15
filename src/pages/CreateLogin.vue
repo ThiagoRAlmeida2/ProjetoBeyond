@@ -20,26 +20,7 @@
         >
           Create Your Account
         </h2>
-        <!-- Conteúdo do cartão -->
         <v-form @submit.prevent="submit">
-          <v-text-field
-              v-model="name"
-              :error-messages="nameErrors"
-              :counter="10"
-              label="Name"
-              required
-              @input="$v.name.$touch()"
-              @blur="$v.name.$touch()"
-          ></v-text-field>
-          <v-text-field
-              v-model="lastName"
-              :error-messages="lastNameErrors"
-              :counter="10"
-              label="Last name"
-              required
-              @input="$v.lastName.$touch()"
-              @blur="$v.lastName.$touch()"
-          ></v-text-field>
           <v-text-field
               v-model="email"
               :error-messages="emailErrors"
@@ -56,15 +37,6 @@
               required
               @input="$v.password.$touch()"
               @blur="$v.password.$touch()"
-          ></v-text-field>
-          <v-text-field
-              v-model="confirmPassword"
-              :error-messages="confirmPasswordErrors"
-              label="Confirm your Password"
-              type="password"
-              required
-              @input="$v.confirmPassword.$touch()"
-              @blur="$v.confirmPassword.$touch()"
           ></v-text-field>
           <v-checkbox
               v-model="checkbox"
@@ -86,27 +58,21 @@
 
 <script>
 import { validationMixin } from 'vuelidate'
-import { required, maxLength, email, sameAs } from 'vuelidate/lib/validators'
+import { required, email } from 'vuelidate/lib/validators'
 
 export default {
   mixins: [validationMixin],
 
   validations: {
-    name: { required, maxLength: maxLength(10) },
-    lastName: { required, maxLength: maxLength(10) },
     email: { required, email },
     password: { required },
-    confirmPassword: { required, sameAsPassword: sameAs('password') },
     select: { required },
     checkbox: { checked: val => val },
   },
 
   data: () => ({
-    name: '',
-    lastName: '',
     email: '',
     password: '',
-    confirmPassword: '',
     select: null,
     checkbox: false,
   }),
@@ -115,20 +81,11 @@ export default {
     checkboxErrors() {
       return !this.$v.checkbox.$dirty ? [] : !this.$v.checkbox.checked ? ['You must agree to continue!'] : []
     },
-    nameErrors() {
-      return !this.$v.name.$dirty ? [] : (!this.$v.name.maxLength ? ['Name must be at most 10 characters long'] : (!this.$v.name.required ? ['Name is required.'] : []))
-    },
-    lastNameErrors() {
-      return !this.$v.lastName.$dirty ? [] : (!this.$v.lastName.maxLength ? ['Last name must be at most 10 characters long'] : (!this.$v.lastName.required ? ['Last name is required.'] : []))
-    },
     emailErrors() {
       return !this.$v.email.$dirty ? [] : (!this.$v.email.email ? ['Must be valid e-mail'] : (!this.$v.email.required ? ['E-mail is required'] : []))
     },
     passwordErrors() {
       return !this.$v.password.$dirty ? [] : (!this.$v.password.required ? ['Password is required.'] : [])
-    },
-    confirmPasswordErrors() {
-      return !this.$v.confirmPassword.$dirty ? [] : (!this.$v.confirmPassword.required ? ['Confirm password is required.'] : (!this.$v.confirmPassword.sameAsPassword ? ['Passwords do not match.'] : []))
     },
   },
 
@@ -139,18 +96,13 @@ export default {
         this.$store.dispatch("create", {
           email: this.email,
           password: this.password,
-          name: this.name,
-          lastName: this.lastName,
         });
       }
     },
     clear() {
       this.$v.$reset()
-      this.name = ''
-      this.lastName = ''
       this.email = ''
       this.password = ''
-      this.confirmPassword = ''
       this.select = null
       this.checkbox = false
     },
@@ -159,11 +111,8 @@ export default {
     },
     create(){
       this.$store.dispatch("create", {
-        nome: this.nome,
-        sobrenome: this.sobrenome,
         email:this.email,
-        password:this.password,
-        password_confirmation: this.password,
+        password:this.password
       });
     },
   },
