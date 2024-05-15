@@ -14,7 +14,9 @@
         </v-form>
       </v-card-text>
       <v-card-actions>
-        <v-btn color="blue" @click="create"> Criar Conta</v-btn>
+        <router-link to="/createLogin">
+          <v-btn color="blue">Criar Conta</v-btn>
+        </router-link>
         <v-spacer></v-spacer>
         <v-btn color="blue" @click="login">Login</v-btn>
       </v-card-actions>
@@ -38,12 +40,6 @@ export default {
       });
       this.$router.push('/home');
     },
-    create(){
-      this.$store.dispatch("create", {
-        email:this.email,
-        password:this.password
-      });
-    }
   }
 }
 </script>
