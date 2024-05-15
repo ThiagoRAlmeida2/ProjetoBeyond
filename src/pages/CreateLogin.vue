@@ -20,6 +20,7 @@
         >
           Create Your Account
         </h2>
+        <!-- Conteúdo do cartão -->
         <v-form @submit.prevent="submit">
           <v-text-field
               v-model="email"
@@ -58,14 +59,17 @@
 
 <script>
 import { validationMixin } from 'vuelidate'
-import { required, email } from 'vuelidate/lib/validators'
+import { required, maxLength, email, sameAs } from 'vuelidate/lib/validators'
 
 export default {
   mixins: [validationMixin],
 
   validations: {
+    name: { required, maxLength: maxLength(10) },
+    lastName: { required, maxLength: maxLength(10) },
     email: { required, email },
     password: { required },
+    confirmPassword: { required, sameAsPassword: sameAs('password') },
     select: { required },
     checkbox: { checked: val => val },
   },
@@ -80,6 +84,9 @@ export default {
   computed: {
     checkboxErrors() {
       return !this.$v.checkbox.$dirty ? [] : !this.$v.checkbox.checked ? ['You must agree to continue!'] : []
+    },
+    nameErrors() {
+      return !this.$v.name.$dirty ? [] : (!this.$v.name.maxLength ? ['Name must be at most 10 characters long'] : (!this.$v.name.required ? ['Name is required.'] : []))
     },
     emailErrors() {
       return !this.$v.email.$dirty ? [] : (!this.$v.email.email ? ['Must be valid e-mail'] : (!this.$v.email.required ? ['E-mail is required'] : []))
@@ -103,6 +110,7 @@ export default {
       this.$v.$reset()
       this.email = ''
       this.password = ''
+      this.confirmPassword = ''
       this.select = null
       this.checkbox = false
     },
