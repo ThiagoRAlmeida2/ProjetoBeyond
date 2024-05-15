@@ -1,25 +1,13 @@
 <template>
   <v-row style="height: 100vh; background-color: #212179;">
-
     <!-- Divisão -->
     <v-col cols="6">
       <v-divider vertical></v-divider>
     </v-col>
 
     <v-col cols="6">
-      <v-card
-          elevation="5"
-          class="container"
-          width="50%"
-          height="100%"
-          style="margin-right: 0; position: relative;"
-      >
-        <h2
-            style="color: black;"
-            align="center"
-        >
-          Create Your Account
-        </h2>
+      <v-card elevation="5" class="container" width="50%" height="100%" style="margin-right: 0; position: relative;">
+        <h2 style="color: black;" align="center">Create Your Account</h2>
         <!-- Conteúdo do cartão -->
         <v-form @submit.prevent="submit">
           <v-text-field
@@ -48,9 +36,11 @@
               @blur="$v.checkbox.$touch()"
           ></v-checkbox>
 
-          <v-btn type="submit" class="mr-4" @click="create" style="margin-bottom: 10px;">Create Account</v-btn>
-          <v-btn class="mr-4" @click="clear">Clear</v-btn>
-          <v-btn @click="back">Back</v-btn>
+          <v-row class="mt-4">
+            <v-btn type="submit" @click="create" style="margin-bottom: 10px; margin-right: 5px;">Create Account</v-btn>
+            <v-btn class="mr-4" @click="clear">Clear</v-btn>
+            <v-btn @click="back">Back</v-btn>
+          </v-row>
         </v-form>
       </v-card>
     </v-col>
