@@ -1,4 +1,3 @@
-<!-- LoginPage.vue -->
 <template>
   <div class="login-container">
     <div class="login-box">
@@ -36,11 +35,13 @@
 
 <script setup>
 import { ref } from 'vue';
-import firebase from "firebase/compat";
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
+import "firebase/compat/firestore";
 import router from "@/routes/router";
 
-const email = ref('');
-const password = ref('');
+const email = ref('thiagoralmeida23@gmail.com');
+const password = ref('thiagomitosis123');
 const errorMessage = ref('');
 
 const login = async () => {
@@ -52,8 +53,15 @@ const login = async () => {
   }
 
   try {
-    const userCredential = await firebase.auth().signInWithEmailAndPassword(email.value, password.value);
-    console.log('Login bem-sucedido:', userCredential.user);
+    await firebase.auth().signInWithEmailAndPassword(email.value, password.value);
+
+    const usersCollection = firebase.firestore().collection('users');
+    const querySnapshot = await usersCollection.where('email', '==', email.value).get();
+
+    if (querySnapshot.empty) {
+      throw new Error('Usuário não encontrado.');
+    }
+
     await router.push('/home');
   } catch (error) {
     console.error('Erro ao fazer login:', error);
@@ -62,13 +70,14 @@ const login = async () => {
 };
 </script>
 
+
 <style scoped>
 .login-container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #f5f5f5;
+  background-color: #212179;
 }
 
 .login-box {
