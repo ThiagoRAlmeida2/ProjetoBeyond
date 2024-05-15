@@ -9,46 +9,17 @@
         <menu-header></menu-header>
       </header>
 
-        <v-toolbar-title :style="{ color: 'withe' }">
-          <v-icon class="mr-2">mdi-forum</v-icon>
-          Forum Bayond
-        </v-toolbar-title>
+      <v-toolbar-title :style="{ color: 'withe' }">
+        <v-icon class="mr-2">mdi-forum</v-icon>
+        Forum Bayond
+      </v-toolbar-title>
 
+      <v-spacer> </v-spacer>
 
-      <v-spacer></v-spacer>
-
-      <v-bottom-navigation
-          :value="value"
-          background-color="transparent"
-          color="cyan"
-          class="bottom-nav"
-      >
-        <v-spacer align="center">
-          <v-btn
-            background-color="transparent"
-            color="transparent"
-        >
-          <span>Recents</span>
-          <v-icon>mdi-history</v-icon>
-        </v-btn>
-          <v-btn
-              background-color="transparent"
-              color="transparent"
-              @click="goTo('/')"
-          >
-            <span>Home</span>
-            <v-icon>mdi-home</v-icon>
-          </v-btn>
-          <v-btn
-              background-color="transparent"
-              color="transparent"
-              @click="goTo('/login')"
-          >
-            <span>Login</span>
-            <v-icon>mdi-login</v-icon>
-          </v-btn></v-spacer>
-
-      </v-bottom-navigation>
+      <v-btn text @click="confirmLogout" class="mr-4">
+        <v-icon left>mdi-logout</v-icon>
+        Logout
+      </v-btn>
     </v-toolbar>
   </div>
 </template>
@@ -58,26 +29,19 @@ import MenuHeader from "@/components/MenuHeader.vue";
 
 export default {
   methods: {
-    goTo(path) {
-      this.$router.push(path);
+    confirmLogout() {
+      if (confirm("Tem certeza que deseja sair?")) {
+        this.logout();
+      }
     },
+    logout() {
+     this.$router.push('/');
+    }
   },
   name: "Header",
   components: {
     MenuHeader,
-
-    // eslint-disable-next-line vue/no-unused-components
-    data: () => ({
-      items: [
-        {
-          icon: 'mdi-login',
-          text: 'Login',
-          route: '/login',
-        },
-      ]
-    }),
   }
-
 };
 
 </script>
