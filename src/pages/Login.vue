@@ -1,9 +1,15 @@
-<!-- LoginPage.vue -->
 <template>
   <div class="login-container">
     <div class="login-box">
-      <h1>Entrar</h1>
-      <form @submit.prevent="login">
+      <h1>
+        Entrar
+        <img src="@/assets/beyond_coo_logo.jpeg" alt="Ícone de Entrar" class="login-icon">
+      </h1>
+      <form>
+        <div class="alert-box" v-if="errorMessage">
+          <span class="alert-icon">!</span>
+          <span class="alert-message">{{ errorMessage }}</span>
+        </div>
         <div class="form-group">
           <label for="email">E-mail</label>
           <input
@@ -24,7 +30,7 @@
               placeholder="Digite sua senha"
           />
         </div>
-        <button type="submit" class="login-button">Entrar</button>
+        <button type="button" class="login-button" @click="login">Entrar</button>
       </form>
       <div class="additional-options">
         <a href="#">Esqueceu a senha?</a>
@@ -36,14 +42,30 @@
 
 <script setup>
 import { ref } from 'vue';
+import firebase from 'firebase/app';
+import 'firebase/auth';
+import router from "@/routes/router";
 
 const email = ref('');
 const password = ref('');
+const errorMessage = ref('');
 
-const login = () => {
+const login = async () => {
+  errorMessage.value = '';
 
-  console.log('Tentativa de login:', { email: email.value, password: password.value });
+  if (!email.value || !password.value) {
+    errorMessage.value = 'Por favor, preencha todos os campos.';
+    return;
+  }
 
+  try {
+    const userCredential = await firebase.auth().signInWithEmailAndPassword(email.value, password.value);
+    console.log('Login bem-sucedido:', userCredential.user);
+    router.push('/home');
+  } catch (error) {
+    console.error('Erro ao fazer login:', error);
+    errorMessage.value = 'Credenciais inválidas. Por favor, tente novamente.';
+  }
 };
 </script>
 
@@ -53,7 +75,7 @@ const login = () => {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color:#212179;
+  background-color: #212179;
 }
 
 .login-box {
@@ -102,5 +124,31 @@ a {
 
 a:hover {
   text-decoration: underline;
+}
+
+.alert-box {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 0.75em;
+  border-radius: 4px;
+  margin-bottom: 1em;
+  display: flex;
+  align-items: center;
+}
+
+.alert-icon {
+  font-size: 1.5em;
+  margin-right: 0.5em;
+}
+
+.alert-message {
+  flex-grow: 1;
+}
+
+.login-icon {
+  width: 40px;
+  height: auto;
+  margin-left: 0.5em;
+  vertical-align: middle;
 }
 </style>
