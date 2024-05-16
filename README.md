@@ -1,6 +1,6 @@
 # Forum Bayond
 
-Forum Bayond é uma plataforma de discussão online onde as pessoas podem criar comunidades para conversas, troca de ideias e aprendizado. Este projeto visa proporcionar um ambiente onde todos possam compartilhar conhecimentos, discutir tópicos interessantes e encontrar pessoas com interesses semelhantes.
+**Forum Bayond** é uma plataforma de discussão online onde as pessoas podem criar comunidades para conversas, troca de ideias e aprendizado. Este projeto visa proporcionar um ambiente onde todos possam compartilhar conhecimentos, discutir tópicos interessantes e encontrar pessoas com interesses semelhantes.
 
 ## Recursos do Projeto
 
@@ -9,6 +9,7 @@ Forum Bayond é uma plataforma de discussão online onde as pessoas podem criar 
 - **Criação de Fóruns**: Use uma caixa de diálogo intuitiva para criar seu próprio fórum, adicionando tópicos de interesse e convidando outros usuários.
 - **Chats em Tempo Real**: Os fóruns têm seções de chat para comunicação instantânea entre membros.
 - **Design Responsivo**: O layout é responsivo para oferecer uma boa experiência tanto em dispositivos móveis quanto em computadores.
+- **Tela de login e criar conta**: Temos a criação de duas delas uma para se efetuar o login e outra para criar uma conta para o usuario.
 
 ## Como Usar
 
@@ -30,7 +31,9 @@ Se deseja contribuir para o projeto, siga estas etapas:
 
 - **Framework Vue.js**: O projeto é construído com Vue.js, uma framework JavaScript progressiva para construção de interfaces de usuário.
 - **Vuetify**: Utilizamos Vuetify para componentes de UI e estilos visuais.
-- **VueRouter**: Utilizei VueRouter para linkar as paginas
+- **VueRouter**: Utilizei VueRouter para linkar as paginas.
+- **Vuex**: Utilizado para gerenciamento de estado.
+- **Autenticação com Firebase**: A autenticação é tratada usando o Firebase Authentication.
 
 ## Contato e Suporte
 
@@ -38,8 +41,10 @@ Para suporte ou perguntas sobre o projeto, entre em contato pelo e-mail thiagora
 
 ## Fotos do projeto
 
-Aqui tenho algumas fotos para uma pequena visualização do projeto
+Aqui tenho algumas fotos para uma pequena visualização do projeto:
 
 ![Primeira Imagem](src/assets/imagem3.png)
 ![Segunda_Imagem](src/assets/Imagem2.png)
 ![Terceira_Image](src/assets/Imagem7.png)
+![Quarta_Image](src/assets/Imagem9.png)
+![Quinta_Image](src/assets/Imagem8.png)
