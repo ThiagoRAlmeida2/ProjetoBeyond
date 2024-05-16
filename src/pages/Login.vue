@@ -1,16 +1,18 @@
 <template>
-  <div class="about">
-    <v-card class="mx-auto" max-width="500">
+  <div class="login-container">
+    <div class="login-box">
       <v-card-title>Login</v-card-title>
       <v-card-text>
         <v-form>
-          <v-text-field v-model="email" label="Email" required></v-text-field>
-          <v-text-field
-              v-model="password"
-              label="Password"
-              type="password"
-              required
-          ></v-text-field>
+          <div class="form-group">
+            <v-text-field v-model="email" label="Email" required></v-text-field>
+            <v-text-field
+                v-model="password"
+                label="Password"
+                type="password"
+                required
+            ></v-text-field>
+          </div>
         </v-form>
       </v-card-text>
       <v-card-actions>
@@ -20,7 +22,7 @@
         <v-spacer></v-spacer>
         <v-btn color="blue" @click="login">Login</v-btn>
       </v-card-actions>
-    </v-card>
+    </div>
   </div>
 </template>
 
@@ -43,17 +45,42 @@ export default {
         email:this.email,
         password:this.password
       })
-      .then(userCredential => {
-        if (userCredential && userCredential.user) {
-          this.$router.push('/home');
-        } else {
-          alert("Credenciais inválidas. Por favor, tente novamente.");
-        }
-      })
-      .catch((error => {
-        alert(error.message);
-      }))
+          .then(userCredential => {
+            if (userCredential && userCredential.user) {
+              this.$router.push('/home');
+            } else {
+              alert("Credenciais inválidas. Por favor, tente novamente.");
+            }
+          })
+          .catch((error => {
+            alert(error.message);
+          }))
     },
   }
 }
 </script>
+
+<style scoped>
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #212179;
+}
+
+
+.login-box {
+  background-color: white;
+  padding: 2em;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 300px;
+}
+
+.form-group {
+  margin-bottom: 1em;
+}
+
+</style>
