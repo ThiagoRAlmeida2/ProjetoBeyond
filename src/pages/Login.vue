@@ -27,34 +27,19 @@
 </template>
 
 <script>
-export default {
-  data(){
+  export default {
+    data(){
     return{
-      email: "",
-      password: "",
-    };
+    email: "",
+    password: "",
+  };
   },
-  methods:{
-    login(){
-      if(!this.email || !this.password){
-        alert("Preencha os campos");
-        return;
-      }
-
-      this.$store.dispatch("login",{
+      methods:{
+        login(){
+        this.$store.dispatch("login",{
         email:this.email,
         password:this.password
-      })
-          .then(userCredential => {
-            if (userCredential && userCredential.user) {
-              this.$router.push('/home');
-            } else {
-              alert("Credenciais inválidas. Por favor, tente novamente.");
-            }
-          })
-          .catch((error => {
-            alert(error.message);
-          }))
+        });this.$router.push('/home');
     },
   }
 }
