@@ -34,11 +34,25 @@ export default {
   },
   methods:{
     login(){
+      if(!this.email || !this.password){
+        alert("Preencha os campos");
+        return;
+      }
+
       this.$store.dispatch("login",{
         email:this.email,
         password:this.password
-      });
-      this.$router.push('/home');
+      })
+      .then(userCredential => {
+        if (userCredential && userCredential.user) {
+          this.$router.push('/home');
+        } else {
+          alert("Credenciais inválidas. Por favor, tente novamente.");
+        }
+      })
+      .catch((error => {
+        alert(error.message);
+      }))
     },
   }
 }
