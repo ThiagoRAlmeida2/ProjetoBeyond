@@ -40,18 +40,16 @@
 
 
 <script>
-import {onAuthStateChanged} from 'firebase/auth';
+import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from '@/service/firebase';
 
-
 export default {
-  data(){
-    return{
+  data() {
+    return {
       email: "",
       password: "",
     };
   },
-
 
   methods: {
     async login() {
