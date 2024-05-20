@@ -126,6 +126,8 @@
 </template>
 
 <script>
+import { db } from '@/service/firebase';
+
 export default {
   data() {
     return {
@@ -163,24 +165,32 @@ export default {
         this.newCommunity.imageURL = imageURL;
       }
     },
-    saveCommunity() {
+    async saveCommunity() {
       const newEntry = {
         name: this.newCommunity.name,
         description: this.newCommunity.description,
+        ageGroup: this.newCommunity.ageGroup,
+        interests: this.newCommunity.interests,
         imageURL: this.newCommunity.imageURL,
       };
-      this.communities.push(newEntry);
-      this.dialog = false;
 
-      this.newCommunity = {
-        name: '',
-        email: '',
-        description: '',
-        ageGroup: '',
-        interests: [],
-        image: '',
-        imageURL: null,
-      };
+      try {
+        await db.collection('communities').add(newEntry);
+        this.communities.push(newEntry);
+        this.dialog = false;
+
+        this.newCommunity = {
+          name: '',
+          email: '',
+          description: '',
+          ageGroup: '',
+          interests: [],
+          image: '',
+          imageURL: null,
+        };
+      } catch (error) {
+        console.error("Error adding document: ", error);
+      }
     },
   },
 };
@@ -194,6 +204,6 @@ export default {
 }
 
 .elevated-card {
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
 }
 </style>
