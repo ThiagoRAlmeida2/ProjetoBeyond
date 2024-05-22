@@ -46,7 +46,7 @@ export default {
   methods: {
     navigate(icon) {
       if (icon === 'mdi-home') {
-        this.$router.push('/');
+        this.$router.push('/home');
       }
     },
   },
