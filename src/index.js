@@ -7,7 +7,7 @@ app.use(express.json());
 app.use(cors());
 
 // Configuração do Firebase Admin SDK
-const serviceAccount = require('./serviceAccountKey.json');
+const serviceAccount = require('../serviceAccountKey.json');
 const firebase = require("firebase/compat");
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
