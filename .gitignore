@@ -21,3 +21,11 @@ pnpm-debug.log*
 *.njsproj
 *.sln
 *.sw?
+
+# Arquivo de chave da conta de serviço do Firebase
+serviceAccountKey.json
+package-lock.json
+package.json
+jsconfig.json
+firebase.js
+index.js
