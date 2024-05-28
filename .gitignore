@@ -23,7 +23,7 @@ pnpm-debug.log*
 *.sw?
 
 #ignorar arquivo
-.index.js
+index.js
 babel.config.js
 jsconfig.json
 package.json
