@@ -22,12 +22,12 @@ pnpm-debug.log*
 *.sln
 *.sw?
 
-# Arquivo de chave da conta de serviço do Firebase
-serviceAccountKey.json
-package-lock.json
-package.json
-jsconfig.json
-firebase.js
-index.js
-vue.config.js
+#ignorar arquivo
+.index.js
+
 babel.config.js
+jsconfig.json
+package.json
+package-lock.json
+serviceAccountKey.json
+vue.config.js
