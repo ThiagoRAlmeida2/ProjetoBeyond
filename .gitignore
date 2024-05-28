@@ -24,7 +24,6 @@ pnpm-debug.log*
 
 #ignorar arquivo
 .index.js
-
 babel.config.js
 jsconfig.json
 package.json
