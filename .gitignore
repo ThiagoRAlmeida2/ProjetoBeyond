@@ -29,3 +29,6 @@ package.json
 jsconfig.json
 firebase.js
 index.js
+vue.config.js
+babel.config.js
+.public
