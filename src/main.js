@@ -21,30 +21,29 @@ const store = new Vuex.Store({
         },
     },
     actions: {
-        // eslint-disable-next-line no-unused-vars
         async create({ commit }, payload) {
-            const {email, password } = payload;
+            const { email, password } = payload;
+            // eslint-disable-next-line no-useless-catch
             try {
-                // eslint-disable-next-line no-undef
                 const result = await createUserWithEmailAndPassword(auth, email, password);
                 console.log("Usuário criado!", result);
+                commit("setUser", result.user); // Adiciona o usuário ao estado após criação
             } catch (error) {
-                alert(error);
+                throw error; // Lança o erro para ser tratado no componente
             }
         },
-        // eslint-disable-next-line no-undef
         async login({ commit }, payload) {
             const { email, password } = payload;
+            // eslint-disable-next-line no-useless-catch
             try {
-                // eslint-disable-next-line no-undef
                 const result = await signInWithEmailAndPassword(auth, email, password);
                 console.log("Usuário logado!", result);
                 commit("setUser", result.user);
             } catch (error) {
-                alert(error);
+                throw error; // Lança o erro para ser tratado no componente
             }
         },
-    },
+    }
 });
 Vue.config.productionTip = false
 

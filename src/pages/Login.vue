@@ -53,23 +53,24 @@ export default {
 
   methods: {
     async login() {
-      await this.$store.dispatch("login", {
-        email: this.email,
-        password: this.password,
-      });
-      onAuthStateChanged(auth, (user) => {
-        if (user) {
-          if (this.$route.path !== '/home') {
-            this.$router.push({ path: '/home' });
+      try {
+        await this.$store.dispatch("login", {
+          email: this.email,
+          password: this.password,
+        });
+
+        onAuthStateChanged(auth, (user) => {
+          if (user) {
+            if (this.$route.path !== '/home') {
+              this.$router.push({ path: '/home' });
+            }
           }
-        } else {
-          if (this.$route.path !== '/') {
-            this.$router.push({ path: '/' });
-          }
-        }
-      });
+        });
+      } catch (error) {
+        alert('Falha no login: ' + error.message);
+      }
     },
-  },
+  }
 }
 </script>
 
