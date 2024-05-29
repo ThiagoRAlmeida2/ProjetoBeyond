@@ -119,15 +119,15 @@
                 @keyup.enter="trySendMessage"
             >
               <template v-slot:append>
-                <v-btn icon @click="sendMessage">
+                <v-btn  @click="sendMessage">
                   <v-icon>mdi-send</v-icon>
                 </v-btn>
 
-                <v-btn icon @click="triggerFileInput">
+                <v-btn @click="triggerFileInput">
                   <v-icon>mdi-file-image</v-icon>
                 </v-btn>
 
-                <v-btn icon @click="toggleRecording">
+                <v-btn  @click="toggleRecording">
                   <v-icon v-if="!isRecording">mdi-microphone</v-icon>
                   <v-icon v-else>mdi-stop-circle</v-icon>
                 </v-btn>
