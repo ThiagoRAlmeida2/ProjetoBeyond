@@ -16,7 +16,6 @@
             v-for="icon in icons"
             :key="icon"
             class="mx-4"
-            icon
             @click="navigate(icon)"
         >
         <v-icon size="24px">

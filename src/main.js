@@ -47,7 +47,7 @@ const store = new Vuex.Store({
 });
 Vue.config.productionTip = false
 
-new Vue({
+new vue({
     vuetify,
     store,
     router,
