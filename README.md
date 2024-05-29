@@ -1,4 +1,4 @@
-# Forum Bayond
+# Forum Beyond
 
 **Forum Bayond** é uma plataforma de discussão online onde as pessoas podem criar comunidades para conversas, troca de ideias e aprendizado. Este projeto visa proporcionar um ambiente onde todos possam compartilhar conhecimentos, discutir tópicos interessantes e encontrar pessoas com interesses semelhantes.
 
