@@ -10,7 +10,6 @@ import CriarComunidade from "@/components/CriarComunidade.vue";
 export default {
   components: {
     CriarComunidade,
-    Busca,
   },
   data() {
     return {};
