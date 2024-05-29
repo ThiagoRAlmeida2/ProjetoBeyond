@@ -1,8 +1,8 @@
 <template>
-    <div class="container">
-      <busca></busca>
-      <criar-comunidade></criar-comunidade>
-    </div>
+  <div class="container">
+    <busca></busca>
+    <criar-comunidade></criar-comunidade>
+  </div>
 </template>
 
 <script>
@@ -15,8 +15,7 @@ export default {
     Busca,
   },
   data() {
-    return {
-    };
+    return {};
   },
 };
 </script>

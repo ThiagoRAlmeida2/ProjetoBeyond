@@ -22,9 +22,8 @@
 
               <v-list>
                 <v-list-item-group v-model="selectedForum" color="blue">
-                  <template v-for="(item, index) in items">
+                  <template v-for="(item, index) in items" :key="index">
                     <v-list-item
-                        :key="index"
                         @click="selectForum(index)"
                         :active="selectedForum === index"
                     >
