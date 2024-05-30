@@ -83,6 +83,10 @@
         <v-card class="mx-auto" max-width="344">
           <v-card-title>{{ community.name }}</v-card-title>
           <v-card-subtitle>{{ community.description }}</v-card-subtitle>
+          <v-card-text>
+            <div>Number of Members: {{ community.ageGroup }}</div>
+            <div>Interests: {{ community.interests.join(', ') }}</div>
+          </v-card-text>
           <v-card-actions>
             <div class="text-center">
               <v-btn
