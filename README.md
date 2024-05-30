@@ -10,7 +10,7 @@
 - **Chats em Tempo Real**: Os fóruns têm seções de chat para comunicação instantânea entre membros.
 - **Design Responsivo**: O layout é responsivo para oferecer uma boa experiência tanto em dispositivos móveis quanto em computadores.
 - **Tela de login e criar conta**: Temos a criação de duas delas uma para se efetuar o login e outra para criar uma conta para o usuario.
-
+- **Usando o vercel**: Utilização do Vercel para implantação do projeto, garantindo facilidade e eficiência no processo de deploy.
 ## Como Usar
 
 1. **Navegação na Página Inicial**: Acesse a página inicial para ver a lista de fóruns. Clique para se inscrever nos que mais lhe interessam.
@@ -48,5 +48,3 @@ Aqui tenho algumas fotos para uma pequena visualização do projeto:
 ![Terceira_Image](src/assets/Imagem7.png)
 ![Quarta_Image](src/assets/Imagem9.png)
 ![Quinta_Image](src/assets/Imagem8.png)
-
-Essa é a branch certa
