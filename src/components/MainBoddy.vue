@@ -12,8 +12,7 @@ export default {
     CriarComunidade,
   },
   data() {
-    return {
-    };
+    return {};
   },
 };
 </script>

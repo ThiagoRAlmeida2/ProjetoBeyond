@@ -35,7 +35,7 @@ export default {
       }
     },
     logout() {
-     this.$router.push('/');
+      this.$router.push('/');
     }
   },
   name: "Header",
