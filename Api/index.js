@@ -39,6 +39,21 @@ app.post('/createLogin', async (req, res) => {
     }
 });
 
+// Rota para obter informações de um usuário pelo UID
+app.get('/createLogin/:uid', async (req, res) => {
+    const { uid } = req.params;
+
+    try {
+        const userDoc = await db.collection('users').doc(uid).get();
+        if (!userDoc.exists) {
+            return res.status(404).send('Usuário não encontrado');
+        }
+        res.status(200).json(userDoc.data());
+    } catch (error) {
+        res.status(400).send('Erro ao obter informações do usuário: ' + error.message);
+    }
+});
+
 // Rota para login de usuário
 app.post('/login', async (req, res) => {
     const { email, password } = req.body;
