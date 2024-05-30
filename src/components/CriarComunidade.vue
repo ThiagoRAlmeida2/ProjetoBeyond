@@ -1,5 +1,5 @@
-<template class="CriarComunidade">
-  <v-row class="CriarComunidade" justify="end">
+<template class="Comunidade">
+  <v-row class="Comunidade" justify="end">
     <v-dialog
         v-model="dialog"
         persistent
@@ -78,6 +78,7 @@
       </v-card>
     </v-dialog>
 
+
     <v-row>
       <v-col v-for="(community, index) in communities" :key="index" cols="12" sm="6" md="4">
         <v-card class="mx-auto" max-width="344">
@@ -121,14 +122,15 @@
   </v-row>
 </template>
 
+
 <script>
+import { mapState, mapActions } from 'vuex';
 
 export default {
   data() {
     return {
       isLoading: false,
       dialog: false,
-      communities: [],
       newCommunity: {
         name: '',
         description: '',
@@ -137,7 +139,11 @@ export default {
       },
     };
   },
+  computed: {
+    ...mapState(['communities']),
+  },
   methods: {
+    ...mapActions(['saveCommunity', 'getCommunities']),
     subscribe() {
       this.isLoading = true;
       setTimeout(() => {
@@ -148,20 +154,13 @@ export default {
     closeDialog() {
       this.dialog = false;
     },
-    saveCommunity() {
-      const newEntry = {
+    async saveCommunity() {
+      await this.saveCommunity({
         name: this.newCommunity.name,
         description: this.newCommunity.description,
         ageGroup: this.newCommunity.ageGroup,
         interests: this.newCommunity.interests,
-      };
-
-      this.communities.unshift(newEntry);
-
-      console.log('Community saved successfully!');
-      console.log('Community added to list!');
-
-      this.dialog = false;
+      });
 
       this.newCommunity = {
         name: '',
@@ -169,18 +168,24 @@ export default {
         ageGroup: '',
         interests: [],
       };
+      this.dialog = false;
     },
+  },
+  created() {
+    this.getCommunities();
   },
 };
 </script>
 
 <style scoped>
-.CriarComunidade {
+.Comunidade {
   margin-left: 5px;
   margin-top: 2px;
 }
+
 
 .elevated-card {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
 }
 </style>
+
