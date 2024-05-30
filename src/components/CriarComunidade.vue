@@ -29,13 +29,6 @@
                     required
                 ></v-text-field>
               </v-col>
-              <v-col cols="12" sm="6">
-                <v-file-input
-                    label="Community Image"
-                    accept="image/*"
-                    @change="onImageChange"
-                ></v-file-input>
-              </v-col>
               <v-col cols="12">
                 <v-textarea
                     v-model="newCommunity.description"
@@ -88,7 +81,6 @@
     <v-row>
       <v-col v-for="(community, index) in communities" :key="index" cols="12" sm="6" md="4">
         <v-card class="mx-auto" max-width="344">
-          <v-img :src="community.imageURL" height="200px"></v-img>
           <v-card-title>{{ community.name }}</v-card-title>
           <v-card-subtitle>{{ community.description }}</v-card-subtitle>
           <v-card-actions>
@@ -126,8 +118,6 @@
 </template>
 
 <script>
-import { db } from '@/service/firebase';
-
 export default {
   data() {
     return {
@@ -136,13 +126,9 @@ export default {
       communities: [],
       newCommunity: {
         name: '',
-        email: '',
-        password: '',
         description: '',
         ageGroup: '',
         interests: [],
-        image: '',
-        imageURL: null,
       },
     };
   },
@@ -157,40 +143,27 @@ export default {
     closeDialog() {
       this.dialog = false;
     },
-    onImageChange(event) {
-      const file = event.target.files[0];
-      if (file) {
-        const imageURL = URL.createObjectURL(file);
-        console.log('Image URL:', imageURL);
-        this.newCommunity.imageURL = imageURL;
-      }
-    },
-    async saveCommunity() {
+    saveCommunity() {
       const newEntry = {
         name: this.newCommunity.name,
         description: this.newCommunity.description,
         ageGroup: this.newCommunity.ageGroup,
         interests: this.newCommunity.interests,
-        imageURL: this.newCommunity.imageURL,
       };
 
-      try {
-        await db.collection('communities').add(newEntry);
-        this.communities.push(newEntry);
-        this.dialog = false;
+      this.communities.unshift(newEntry);
 
-        this.newCommunity = {
-          name: '',
-          email: '',
-          description: '',
-          ageGroup: '',
-          interests: [],
-          image: '',
-          imageURL: null,
-        };
-      } catch (error) {
-        console.error("Error adding document: ", error);
-      }
+      console.log('Community saved successfully!');
+      console.log('Community added to list!');
+
+      this.dialog = false;
+
+      this.newCommunity = {
+        name: '',
+        description: '',
+        ageGroup: '',
+        interests: [],
+      };
     },
   },
 };
@@ -200,7 +173,6 @@ export default {
 .CriarComunidade {
   margin-left: 5px;
   margin-top: 2px;
-
 }
 
 .elevated-card {
