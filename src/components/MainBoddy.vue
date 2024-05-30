@@ -1,18 +1,15 @@
 <template>
     <div class="container">
-      <busca></busca>
       <criar-comunidade></criar-comunidade>
     </div>
 </template>
 
 <script>
 import CriarComunidade from "@/components/CriarComunidade.vue";
-import Busca from "@/components/Busca.vue";
 
 export default {
   components: {
     CriarComunidade,
-    Busca,
   },
   data() {
     return {

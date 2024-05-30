@@ -7,6 +7,7 @@ import router from './routes/router'
 import "vuetify/dist/vuetify.min"
 import { auth } from './service/firebase'
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import '@mdi/font/css/materialdesignicons.css';
 
 Vue.use(Vuex)
 Vue.use(Vuetify)
