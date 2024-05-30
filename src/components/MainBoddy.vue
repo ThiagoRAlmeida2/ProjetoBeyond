@@ -1,7 +1,7 @@
 <template>
-    <div class="container">
-      <criar-comunidade></criar-comunidade>
-    </div>
+  <div class="container">
+    <criar-comunidade></criar-comunidade>
+  </div>
 </template>
 
 <script>
