@@ -45,3 +45,10 @@ export default {
 };
 
 </script>
+
+<style scoped>
+.bottom-nav {
+  width: 18%;
+  background-color: transparent;
+}
+</style>
