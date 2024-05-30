@@ -9,8 +9,7 @@ import {auth, db} from './service/firebase'
 import {createUserWithEmailAndPassword, signInWithEmailAndPassword} from "firebase/auth";
 import '@mdi/font/css/materialdesignicons.css';
 import "firebase/firestore";
-import { collection, addDoc, getDocs } from 'firebase/firestore';
-
+import { collection, addDoc, getDocs } from 'firebase/firestore'
 Vue.use(Vuex)
 Vue.use(Vuetify)
 
