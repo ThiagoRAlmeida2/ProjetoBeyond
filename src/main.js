@@ -5,6 +5,7 @@ import vuetify from './plugins/vuetify'
 import Vuetify from "vuetify/lib/framework";
 import router from './routes/router'
 import "vuetify/dist/vuetify.min"
+import '@mdi/font/css/materialdesignicons.css';
 import { auth } from './service/firebase'
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 
