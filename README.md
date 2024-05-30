@@ -43,8 +43,6 @@ Para suporte ou perguntas sobre o projeto, entre em contato pelo e-mail thiagora
 
 Aqui tenho algumas fotos para uma pequena visualização do projeto:
 
-
-
 ![Primeira Imagem](src/assets/imagem3.png)
 ![Segunda_Imagem](src/assets/Imagem2.png)
 ![Terceira_Image](src/assets/Imagem7.png)
