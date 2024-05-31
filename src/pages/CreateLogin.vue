@@ -8,7 +8,6 @@
     <v-col cols="6">
       <v-card elevation="5" class="container" width="50%" height="100%" style="margin-right: 0; position: relative;">
         <h2 style="color: black;" align="center">Create Your Account</h2>
-        <!-- Conteúdo do cartão -->
         <v-form @submit.prevent="submit">
           <v-text-field
               v-model="email"
@@ -49,19 +48,18 @@
 
 <script>
 import { validationMixin } from 'vuelidate'
-import { required, maxLength, email, sameAs } from 'vuelidate/lib/validators'
+import { required, maxLength, email } from 'vuelidate/lib/validators'
 
 export default {
   mixins: [validationMixin],
 
   validations: {
-    name: { required, maxLength: maxLength(10) },
-    lastName: { required, maxLength: maxLength(10) },
-    email: { required, email },
-    password: { required },
-    confirmPassword: { required, sameAsPassword: sameAs('password') },
-    select: { required },
-    checkbox: { checked: val => val },
+    name: {required, maxLength: maxLength(10)},
+    lastName: {required, maxLength: maxLength(10)},
+    email: {required, email},
+    password: {required},
+    select: {required},
+    checkbox: {checked: val => val},
   },
 
   data: () => ({
@@ -90,6 +88,10 @@ export default {
         this.$store.dispatch("create", {
           email: this.email,
           password: this.password,
+        }).then(() => {
+          this.clear();
+        }).catch(error => {
+          console.log(error);
         });
       }
     },
@@ -97,17 +99,20 @@ export default {
       this.$v.$reset()
       this.email = ''
       this.password = ''
-      this.confirmPassword = ''
       this.select = null
       this.checkbox = false
     },
     back() {
-      this.$router.push({ path: '/' });
+      this.$router.push({path: '/'});
     },
-    create(){
+    create() {
       this.$store.dispatch("create", {
-        email:this.email,
-        password:this.password
+        email: this.email,
+        password: this.password
+      }).then(() => {
+        this.clear();
+      }).catch(error => {
+        console.log("Erro ao criar conta", error);
       });
     },
   },
