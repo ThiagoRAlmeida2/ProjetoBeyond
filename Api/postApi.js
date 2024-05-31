@@ -1,33 +1,22 @@
-const express = require('express');
 const admin = require('firebase-admin');
-const cors = require('cors');
 const multer = require('multer');
 const { v4: uuidv4 } = require('uuid');
+const {post} = require("@/App.vue");
 const app = express();
 
-app.use(express.json());
-app.use(cors());
-
-// Configuração do Firebase Admin SDK
-const serviceAccount = require('Api/serviceAccontKey.json');
-admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount),
-    storageBucket: 'your-firebase-project-id.appspot.com'
-});
 
 const db = admin.firestore();
 const bucket = admin.storage().bucket();
 
-// Configurar o multer para lidar com uploads de arquivos
 const upload = multer({
     storage: multer.memoryStorage()
 });
 
 // Rota para criar um novo post
-app.post('/posts', upload.single('image'), async (req, res) => {
+post('/posts', upload.single('image'), async (req, res) => {
     try {
         const { title, text } = req.body;
-        const id = uuidv4();
+        const id = uuidv4(undefined, undefined, undefined);
 
         let imageUrl = '';
         if (req.file) {
@@ -99,10 +88,4 @@ app.delete('/posts/:id', async (req, res) => {
     } catch (error) {
         res.status(400).send('Erro ao deletar post: ' + error.message);
     }
-});
-
-// Iniciando o servidor
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`Servidor iniciado na porta ${PORT}`);
 });

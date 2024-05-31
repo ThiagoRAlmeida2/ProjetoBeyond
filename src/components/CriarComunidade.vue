@@ -1,4 +1,4 @@
-<template class="CriarComunidade">
+<template>
   <v-row class="CriarComunidade" justify="end">
     <v-dialog
         v-model="dialog"
@@ -122,6 +122,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 
 export default {
   data() {
@@ -138,7 +139,7 @@ export default {
     };
   },
   methods: {
-    subscribe() {
+    async subscribe() {
       this.isLoading = true;
       setTimeout(() => {
         this.isLoading = false;
@@ -148,27 +149,22 @@ export default {
     closeDialog() {
       this.dialog = false;
     },
-    saveCommunity() {
-      const newEntry = {
-        name: this.newCommunity.name,
-        description: this.newCommunity.description,
-        ageGroup: this.newCommunity.ageGroup,
-        interests: this.newCommunity.interests,
-      };
-
-      this.communities.unshift(newEntry);
-
-      console.log('Community saved successfully!');
-      console.log('Community added to list!');
-
-      this.dialog = false;
-
-      this.newCommunity = {
-        name: '',
-        description: '',
-        ageGroup: '',
-        interests: [],
-      };
+    async saveCommunity() {
+      try {
+        const response = await axios.post('/communities', this.newCommunity);
+        console.log('Community saved successfully:', response.data);
+        this.communities.unshift(response.data);
+        this.dialog = false;
+        this.clearForm();
+      } catch (error) {
+        console.error('Error saving community:', error);
+      }
+    },
+    clearForm() {
+      this.newCommunity.name = '';
+      this.newCommunity.description = '';
+      this.newCommunity.ageGroup = '';
+      this.newCommunity.interests = [];
     },
   },
 };
