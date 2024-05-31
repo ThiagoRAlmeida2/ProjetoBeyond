@@ -7,7 +7,8 @@
 
     <v-col cols="6">
       <v-card elevation="5" class="container" width="50%" height="100%" style="margin-right: 0; position: relative;">
-        <h2 style="color: black;" align="center">Crie sua Conta</h2>
+        <h2 style="color: black;" align="center">Create Your Account</h2>
+        <!-- Conteúdo do cartão -->
         <v-form @submit.prevent="submit">
           <v-text-field
               v-model="email"
@@ -20,7 +21,7 @@
           <v-text-field
               v-model="password"
               :error-messages="passwordErrors"
-              label="Senha"
+              label="Password"
               type="password"
               required
               @input="$v.password.$touch()"
@@ -29,19 +30,18 @@
           <v-checkbox
               v-model="checkbox"
               :error-messages="checkboxErrors"
-              label="Você aceita os termos e condições"
+              label="You accept the terms of conditions"
               required
               @change="$v.checkbox.$touch()"
               @blur="$v.checkbox.$touch()"
           ></v-checkbox>
 
           <v-row class="mt-4">
-            <v-btn type="submit" style="margin-bottom: 10px; margin-right: 5px;">Criar Conta</v-btn>
-            <v-btn class="mr-4" @click="clear">Limpar</v-btn>
-            <v-btn @click="back">Voltar</v-btn>
+            <v-btn type="submit" @click="create" style="margin-bottom: 10px; margin-right: 5px;">Create Account</v-btn>
+            <v-btn class="mr-4" @click="clear">Clear</v-btn>
+            <v-btn @click="back">Back</v-btn>
           </v-row>
         </v-form>
-        <v-alert v-if="error" type="error">{{ error }}</v-alert>
       </v-card>
     </v-col>
   </v-row>
@@ -49,62 +49,65 @@
 
 <script>
 import { validationMixin } from 'vuelidate'
-import { required, email as emailValidator } from 'vuelidate/lib/validators'
+import { required, maxLength, email, sameAs } from 'vuelidate/lib/validators'
 
 export default {
   mixins: [validationMixin],
 
   validations: {
-    email: { required, email: emailValidator },
+    name: { required, maxLength: maxLength(10) },
+    lastName: { required, maxLength: maxLength(10) },
+    email: { required, email },
     password: { required },
+    confirmPassword: { required, sameAsPassword: sameAs('password') },
+    select: { required },
     checkbox: { checked: val => val },
   },
 
   data: () => ({
     email: '',
     password: '',
+    select: null,
     checkbox: false,
-    error: '',
   }),
 
   computed: {
     checkboxErrors() {
-      return !this.$v.checkbox.$dirty ? [] : !this.$v.checkbox.checked ? ['Você deve concordar para continuar!'] : []
+      return !this.$v.checkbox.$dirty ? [] : !this.$v.checkbox.checked ? ['You must agree to continue!'] : []
     },
     emailErrors() {
-      return !this.$v.email.$dirty ? [] : (!this.$v.email.email ? ['Deve ser um e-mail válido'] : (!this.$v.email.required ? ['E-mail é obrigatório'] : []))
+      return !this.$v.email.$dirty ? [] : (!this.$v.email.email ? ['Must be valid e-mail'] : (!this.$v.email.required ? ['E-mail is required'] : []))
     },
     passwordErrors() {
-      return !this.$v.password.$dirty ? [] : (!this.$v.password.required ? ['Senha é obrigatória.'] : [])
+      return !this.$v.password.$dirty ? [] : (!this.$v.password.required ? ['Password is required.'] : [])
     },
   },
 
   methods: {
-    async submit() {
+    submit() {
       this.$v.$touch()
       if (!this.$v.$invalid) {
-        try {
-          await this.createAccount();
-          this.clear();
-        } catch (error) {
-          this.error = "Erro ao criar conta: " + error.response.data;
-        }
+        this.$store.dispatch("create", {
+          email: this.email,
+          password: this.password,
+        });
       }
     },
     clear() {
       this.$v.$reset()
       this.email = ''
       this.password = ''
+      this.confirmPassword = ''
+      this.select = null
       this.checkbox = false
-      this.error = ''
     },
     back() {
       this.$router.push({ path: '/' });
     },
-    async createAccount(){
-      await this.$store.dispatch("createAccount", {
-        email: this.email,
-        password: this.password
+    create(){
+      this.$store.dispatch("create", {
+        email:this.email,
+        password:this.password
       });
     },
   },
