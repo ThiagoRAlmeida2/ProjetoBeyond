@@ -1,8 +1,17 @@
-<template>
+<template class="CriarComunidade">
   <v-row class="CriarComunidade" justify="end">
-    <v-dialog v-model="dialog" persistent max-width="600px">
+    <v-dialog
+        v-model="dialog"
+        persistent
+        max-width="600px"
+    >
       <template v-slot:activator="{ on, attrs }">
-        <v-btn color="primary" dark v-bind="attrs" v-on="on">
+        <v-btn
+            color="primary"
+            dark
+            v-bind="attrs"
+            v-on="on"
+        >
           Create Community
         </v-btn>
       </template>
@@ -51,10 +60,18 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" text @click="closeDialog">
+          <v-btn
+              color="blue darken-1"
+              text
+              @click="closeDialog"
+          >
             Close
           </v-btn>
-          <v-btn color="blue darken-1" text @click="saveCommunity">
+          <v-btn
+              color="blue darken-1"
+              text
+              @click="saveCommunity"
+          >
             Save
           </v-btn>
         </v-card-actions>
@@ -67,7 +84,7 @@
           <v-card-title>{{ community.name }}</v-card-title>
           <v-card-subtitle>{{ community.description }}</v-card-subtitle>
           <v-card-text>
-            <div>Age Group: {{ community.ageGroup }}</div>
+            <div>Number of Members: {{ community.ageGroup }}</div>
             <div>Interests: {{ community.interests.join(', ') }}</div>
           </v-card-text>
           <v-card-actions>
@@ -89,7 +106,10 @@
                 <v-card color="primary" dark>
                   <v-card-text>
                     <span>Carregando...</span>
-                    <v-progress-linear indeterminate color="white"></v-progress-linear>
+                    <v-progress-linear
+                        indeterminate
+                        color="white"
+                    ></v-progress-linear>
                   </v-card-text>
                 </v-card>
               </v-dialog>
@@ -102,7 +122,6 @@
 </template>
 
 <script>
-import axios from 'axios';
 
 export default {
   data() {
@@ -119,7 +138,7 @@ export default {
     };
   },
   methods: {
-    async subscribe() {
+    subscribe() {
       this.isLoading = true;
       setTimeout(() => {
         this.isLoading = false;
@@ -129,27 +148,27 @@ export default {
     closeDialog() {
       this.dialog = false;
     },
-    async saveCommunity() {
-      if (!this.newCommunity.name || !this.newCommunity.description || !this.newCommunity.ageGroup) {
-        alert('Please fill in all required fields');
-        return;
-      }
-      try {
-        const response = await axios.post('/communities', this.newCommunity);
-        console.log('Community saved successfully:', response.data);
-        this.communities.unshift(response.data);
-        this.dialog = false;
-        this.clearForm();
-      } catch (error) {
-        console.error('Error saving community:', error);
-        alert('Error saving community. Please try again.');
-      }
-    },
-    clearForm() {
-      this.newCommunity.name = '';
-      this.newCommunity.description = '';
-      this.newCommunity.ageGroup = '';
-      this.newCommunity.interests = [];
+    saveCommunity() {
+      const newEntry = {
+        name: this.newCommunity.name,
+        description: this.newCommunity.description,
+        ageGroup: this.newCommunity.ageGroup,
+        interests: this.newCommunity.interests,
+      };
+
+      this.communities.unshift(newEntry);
+
+      console.log('Community saved successfully!');
+      console.log('Community added to list!');
+
+      this.dialog = false;
+
+      this.newCommunity = {
+        name: '',
+        description: '',
+        ageGroup: '',
+        interests: [],
+      };
     },
   },
 };

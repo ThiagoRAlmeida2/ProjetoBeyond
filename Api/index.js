@@ -62,6 +62,7 @@ app.delete("/conteudos/:id", async (req, res) => {
         res.status(500).json({ error: "Erro ao deletar conteúdo" });
     }
 });
+
 // Rota para adicionar uma comunidade
 app.post('/communities', async (req, res) => {
     try {
