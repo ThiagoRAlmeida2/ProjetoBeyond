@@ -11,6 +11,8 @@
 - **Design Responsivo**: O layout é responsivo para oferecer uma boa experiência tanto em dispositivos móveis quanto em computadores.
 - **Tela de login e criar conta**: Temos a criação de duas delas uma para se efetuar o login e outra para criar uma conta para o usuario.
 - **Usando o vercel**: Utilização do Vercel para implantação do projeto, garantindo facilidade e eficiência no processo de deploy.
+- **Api**:  Desenvolvimento de uma API robusta para gerenciar operações do fórum, como criação de tópicos, postagens, gerenciamento de usuários e autenticação. A API facilitará a comunicação entre o frontend e o backend, assegurando uma experiência de usuário fluida e integrada.
+  
 ## Como Usar
 
 1. **Navegação na Página Inicial**: Acesse a página inicial para ver a lista de fóruns. Clique para se inscrever nos que mais lhe interessam.
